@@ -1,3 +1,4 @@
+// src/components/Layout.tsx
 import { useState } from 'react'
 import { Link, NavLink, Outlet } from 'react-router-dom'
 import { ArrowUpRight, Menu, X } from 'lucide-react'
@@ -34,7 +35,7 @@ export default function Layout() {
         <div className="footer-links"><Link to="/services">What we create</Link><Link to="/work">Our work</Link><Link to="/process">How it works</Link><Link to="/contact">Contact</Link></div>
         <div className="footer-contact"><span className="eyebrow">HAVE A STORY?</span><a href={whatsappLink()} target="_blank" rel="noreferrer">Let's make it real <ArrowUpRight size={15}/></a><span>WhatsApp · +234 816 246 5247</span></div>
       </div>
-      <div className="container footer-bottom"><span>© {new Date().getFullYear()} IQ Create. A PromptIQ company.</span><div><Link to="/privacy">Privacy</Link><Link to="/terms">Terms</Link></div></div>
+      <div className="container footer-bottom"><span>© {new Date().getFullYear()} IQ Create. A PromptIQ company.</span><div><Link to="/privacy">Privacy</Link><Link to="/terms">Terms</Link><Link to="/admin" className="footer-admin">Admin</Link></div></div>
     </footer>
   </>
 }

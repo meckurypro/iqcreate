@@ -54,4 +54,13 @@ The estimator is a planning aid, not a binding quote. It calculates finished min
 - Review the indicative rate model and quote language.
 - Review the Privacy Policy and Terms with appropriate legal advice.
 - Consider adding CAPTCHA / Turnstile and server-side rate limiting or an Edge Function before exposing the public form widely. The honeypot in the current form is only a basic spam deterrent.
-- Add an authenticated internal lead-management screen or use a protected backend workflow to view and update inquiries. This public website deliberately has no admin view.
+- Admin dashboard: see the section below.
+
+## Admin dashboard (`/admin`)
+
+Sign in with a Meckury AI admin account (same Supabase project; access is decided by `public.is_admin()`, i.e. `profiles.role = 'admin'`). A subtle "Admin" link sits in the site footer.
+
+- **Pricing**: edit the rate per minute for each content type, the minimum monthly price, slider limits and the preselected content type. The website estimator reads these live from `iq_create_pricing_rates` / `iq_create_pricing_settings`. `src/pricing.ts` keeps the old values only as an offline fallback.
+- **Inquiries**: read submissions and update their status (admins can change nothing else).
+
+Authorization is enforced by row-level security (migration `202611160002_iq_create_admin_pricing.sql`), not by the UI. For Google sign-in, add `https://<your-domain>/admin` to the Supabase Auth redirect URLs.
