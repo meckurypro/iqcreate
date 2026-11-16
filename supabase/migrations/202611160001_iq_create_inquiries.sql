@@ -41,7 +41,11 @@ create policy "Public can submit IQ Create inquiries"
 
 -- Explicit grants are required for newly-created public tables in this project.
 grant usage on schema public to anon, authenticated;
+revoke all on table public.iq_create_inquiries from anon, authenticated;
 grant insert on table public.iq_create_inquiries to anon, authenticated;
+
+create index if not exists iq_create_inquiries_created_at_idx on public.iq_create_inquiries (created_at desc);
+create index if not exists iq_create_inquiries_status_idx on public.iq_create_inquiries (status);
 
 -- Do not grant SELECT to anon/authenticated. Read inquiries from a trusted admin
 -- environment or a server-side function using a server-only service role key.
